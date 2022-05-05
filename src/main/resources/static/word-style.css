@@ -1,0 +1,38 @@
+.grid-container {
+     grid-template-areas:
+        "A A A A  B B B B"
+        "A A A A  B B B B"
+        "C C D D  E E E E"
+        "F F F F  G G G G"
+        "F F F F  G G G G";
+       grid-template-columns: repeat(8, 1fr);
+       grid-template-rows: repeat(5, 1fr);
+}
+
+.box-verb {
+    grid-area: A;
+}
+
+.box-translate {
+    grid-area: B;
+}
+
+.box-img {
+    grid-area: C;
+}
+
+.box-cat {
+    grid-area: D;
+}
+
+.box-social {
+    grid-area: E;
+}
+
+.box-nodes {
+    grid-area: F;
+}
+
+.box-example {
+    grid-area: G;
+}
