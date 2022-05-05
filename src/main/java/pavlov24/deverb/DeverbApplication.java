@@ -14,7 +14,16 @@ public class DeverbApplication {
 
 		ConfigurableApplicationContext context = SpringApplication.run(DeverbApplication.class, args);
 		VerbRepository repository = context.getBean(VerbRepository.class);
-		repository.save(new Verb(0L, "machen", true, VerbType.SCHWACH));
+		/*repository.save(new Verb(0L, "machen", false, VerbType.SCHWACH));
+		repository.save(new Verb(0L, "lachen", false, VerbType.SCHWACH));
+		repository.save(new Verb(0L, "lieben", false, VerbType.SCHWACH));
+		repository.save(new Verb(0L, "versuchen", false, VerbType.SCHWACH));
+
+		repository.save(new Verb(0L, "schreiben", true, VerbType.STARK));
+		repository.save(new Verb(0L, "schlafen", true, VerbType.STARK));
+		repository.save(new Verb(0L, "trinken", true, VerbType.STARK));
+		repository.save(new Verb(0L, "stehen", true, VerbType.STARK));*/
+
 	}
 
 }
