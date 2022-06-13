@@ -5,6 +5,7 @@
     <title>Привет</title>
     <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/word-style.css}">
+    <script type="text/javascript" th:src="@{/vis-network.min.js}"></script>
 </head>
 <body>
 <header class="navbar border">
@@ -57,7 +58,7 @@
         <div class="bg-light border rounded-3 box-social d-flex">
             <div class="d-flex flex-column justify-content-center align-items-center w-50">
                 <p class="fs-3">
-                    <span></span>
+                    <span th:text="${verb.statistics.views}"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="gray" class="bi bi-eye" viewBox="0 0 16 16">
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
@@ -79,7 +80,9 @@
             </div>
         </div>
         <div class="bg-light border rounded-3 box-nodes">
-            Узлы
+            <div style="height: 300px; width:100%" id="nodes">
+
+            </div>
         </div>
         <div class="bg-light border rounded-3 box-example">
             Примеры
@@ -87,5 +90,30 @@
     </div>
 </div>
 
+<script th:inline="javascript">
+      let children = JSON.parse([[${verb}]].children)
+      // create an array with nodes
+      let datasetN = [];
+      let datasetE = [];
+
+      datasetN.push({id:1, label:[[${verb.value}]]});
+      for (let i=0; i < children.length; i++ ) {
+        datasetN.push({id:(i+2),label:children[i]});
+        datasetE.push({from:1, to:i+2});
+      }
+      var nodes = new vis.DataSet(datasetN);
+
+      // create an array with edges
+      var edges = new vis.DataSet(datasetE);
+
+      // create a network
+      var container = document.getElementById("nodes");
+      var data = {
+        nodes: nodes,
+        edges: edges,
+      };
+      var options = {};
+      var network = new vis.Network(container, data, options);
+</script>
 </body>
 </html>

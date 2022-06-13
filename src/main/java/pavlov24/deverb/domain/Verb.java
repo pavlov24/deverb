@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -31,5 +32,9 @@ public class Verb {
     @ManyToMany(mappedBy = "verbs")
     protected Set<Category> categories = new HashSet<>();
 
+    @OneToOne(mappedBy = "verb")
+    protected Statistics statistics;
+
+    private String children;
 
 }

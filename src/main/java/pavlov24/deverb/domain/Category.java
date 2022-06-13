@@ -1,6 +1,7 @@
 package pavlov24.deverb.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Category {
             joinColumns = @JoinColumn(name = "CATEGORY_ID"),
             inverseJoinColumns = @JoinColumn(name = "VERB_ID")
     )
+    @JsonIgnore
     protected Set<Verb> verbs = new HashSet<>();
 
     private String name;

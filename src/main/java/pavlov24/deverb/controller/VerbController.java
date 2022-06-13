@@ -16,11 +16,15 @@ public class VerbController {
     @Autowired
     private VerbRepository verbRepository;
 
+
     @GetMapping("/word/{word}")
     public String list(Model model, @PathVariable String word) {
         Verb verb = verbRepository.findByValue(word);
         if (verb != null) {
             model.addAttribute("verb", verb );
+            long views = verb.getStatistics().getViews();
+            verb.getStatistics().setViews(views+1);
+            verbRepository.save(verb);
             return "word";
         } else {
             return "404";
