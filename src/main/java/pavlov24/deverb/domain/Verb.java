@@ -37,4 +37,7 @@ public class Verb {
 
     private String children;
 
+    @OneToMany(mappedBy = "verb")
+    private Set<Example> examples;
+
 }

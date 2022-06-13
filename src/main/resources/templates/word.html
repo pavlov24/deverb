@@ -85,7 +85,12 @@
             </div>
         </div>
         <div class="bg-light border rounded-3 box-example">
-            Примеры
+            <div class="my-2 mx-2">
+                <div class="border rounded-3 fs-5 me-2  p-2 bg-info text-white" th:each="ex : ${verb.examples}">
+                    <p  class="mb-0" th:text="'DE: ' + ${ex.germany}"></p>
+                    <p  class="mb-0" th:text="'RU: ' + ${ex.russian}"></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
