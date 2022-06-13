@@ -36,3 +36,18 @@
 .box-example {
     grid-area: G;
 }
+
+.hover-like svg:hover {
+    fill: green;
+}
+.hover-like:hover {
+    border-color: green !important;
+}
+
+.liked {
+    border-color: red !important;
+}
+
+.liked svg {
+    fill: red !important;
+}
