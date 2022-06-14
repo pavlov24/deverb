@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DeVerb</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/autocomplete.css}">
+</head>
+<body style="height:100vh;">
+
+<div class="d-flex h-100 text-center text-white bg-dark">
+    <div class="d-flex h-100 p-3 mx-auto flex-column" style="max-width:50vw;width:100%;">
+        <div th:replace="~{header :: normal}"></div>
+
+        <div class="container box-shadow-animation">
+            <div class="row justify-content-center">
+                <div class="card border-2 rounded-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-black text-center mb-5">Поиск</h5>
+                        <form
+                                class="row align-items-end"
+                                action="SearchResult"
+                                method="post"
+                                id="search-form"
+                        >
+                            <div class="col">
+                                <autocomplete
+                                        class="text-black"
+                                        :search="search"
+                                        placeholder="Введите первые три буквы глагола"
+                                        :get-result-value="getResultValue"
+                                        @submit="handleSubmit"
+                                ></autocomplete>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-auto text-white-50">
+            <p class="mb-0">pavlov24</p>
+            <p class="mb-0">2022</p>
+        </footer>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/js/autocomplete.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/search.js}"></script>
+</body>
+</html>

@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pavlov24.deverb.domain.Verb;
 import pavlov24.deverb.repository.VerbRepository;
 
+import java.util.List;
+
 @Controller
 public class VerbController {
 
     @Autowired
     private VerbRepository verbRepository;
-
 
     @GetMapping("/word/{word}")
     public String list(Model model, @PathVariable String word) {
@@ -30,4 +31,6 @@ public class VerbController {
             return "404";
         }
     }
+
+
 }
