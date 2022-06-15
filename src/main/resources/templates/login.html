@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Авторизация</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/autocomplete.css}">
+</head>
+<body class="text-center bg-dark">
+
+<main class="pav-container box-shadow-animation rounded-2">
+    <form method="POST" th:action="@{/login}">
+        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
+
+        <div class="alert alert-danger" role="alert" th:if="${param.error}">
+           Неверный логин или пароль.
+        </div>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" name="username" id="username" required>
+            <label for="username">Логин</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Пароль" required>
+            <label for="password">Пароль</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+        <a href="/" class="w-100 btn btn-lg btn-outline-secondary">Вернуться на главную</a>
+        <p class="mt-5 mb-3 text-muted">©2022</p>
+    </form>
+</main>
+</body>
+</html>

@@ -16,7 +16,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests((authorize) ->
                         authorize
-                                .antMatchers("/**").permitAll());
+                                .antMatchers("/css/**").permitAll()
+                                .antMatchers("/js/**").permitAll()
+                                .antMatchers("/img/**").permitAll()
+                                .antMatchers("/word/**").permitAll()
+                                .antMatchers("/search/**").permitAll()
+                                .antMatchers("/client/**").authenticated()
+                                .antMatchers("/", "/registration").permitAll()
+                                .anyRequest().authenticated())
+                        .formLogin()
+                            .loginPage("/login")
+                            .permitAll()
+                        .and()
+                        .logout()
+                            .permitAll()
+                            .logoutSuccessUrl("/");
 
     }
     // @formatter:on

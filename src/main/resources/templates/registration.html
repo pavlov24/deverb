@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/autocomplete.css}">
+</head>
+<body class="text-center bg-dark">
+
+    <main class="pav-container box-shadow-animation rounded-2">
+        <form method="POST" th:action="@{/registration}">
+            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+            <div class="form-floating">
+                <input
+                        th:attrappend="value=${hasError}?${name}"
+                        th:classappend="${hasError}? (${nameError} ? 'is-invalid' : 'is-valid')"
+                        type="text" class="form-control" name="name" id="name" placeholder="Имя" required>
+                <label for="name">Логин</label>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+            </div>
+            <div class="form-floating">
+                <input
+                        th:attrappend="value=${hasError}?${password}"
+                        th:classappend="${hasError}? (${passwordError} ? 'is-invalid' : 'is-valid')"
+                        type="password" class="form-control" name="password" id="password" placeholder="Пароль" required>
+                <label for="password">Пароль</label>
+                <div th:if="${passwordError}" class="invalid-feedback">
+                    <span th:text="${passwordError}"></span>
+                </div>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+            </div>
+            <div class="form-floating">
+                <input
+                        th:attrappend="value=${hasError}?${passwordConfirm}"
+                        th:classappend="${hasError}? (${passwordConfirmError} ? 'is-invalid' : 'is-valid')"
+                        type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Повтор пароля" required>
+                <label for="passwordConfirm">Повтор пароля</label>
+                <div th:if="${passwordConfirmError}" class="invalid-feedback">
+                    <span th:text="${passwordConfirmError}"></span>
+                </div>
+                <div class="valid-feedback">
+                    Все хорошо!
+                </div>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Регистрация</button>
+            <a href="/" class="w-100 btn btn-lg btn-outline-secondary">Вернуться на главную</a>
+            <p class="mt-5 mb-3 text-muted">©2022</p>
+        </form>
+    </main>
+</body>
+</html>
