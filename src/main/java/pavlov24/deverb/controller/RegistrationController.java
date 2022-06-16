@@ -14,6 +14,7 @@ import pavlov24.deverb.domain.Client;
 import pavlov24.deverb.domain.Role;
 import pavlov24.deverb.repository.ClientRepository;
 
+import java.util.HashSet;
 import java.util.regex.Pattern;
 
 
@@ -82,7 +83,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        Client client = new Client(0L, name, encoder.encode(password), Role.ROLE_USER);
+        Client client = new Client(0L, name, encoder.encode(password), Role.ROLE_USER, new HashSet<>());
 
 
         if (clientRepository.existsByName(name)){ // если пользователь уже существует

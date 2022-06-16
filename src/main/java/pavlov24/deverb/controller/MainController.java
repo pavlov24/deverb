@@ -16,6 +16,5 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/client")
-    public String client() {return "client";}
+
 }

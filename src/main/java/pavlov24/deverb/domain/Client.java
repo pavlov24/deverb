@@ -1,22 +1,23 @@
 package pavlov24.deverb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
 public class Client implements UserDetails {
 
     @Id
@@ -26,6 +27,9 @@ public class Client implements UserDetails {
     private String password;
     private Role role;
 
+    @ManyToMany(mappedBy = "followers")
+    @JsonIgnore
+    protected Set<Verb> verbs = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

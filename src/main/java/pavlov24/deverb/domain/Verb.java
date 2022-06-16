@@ -1,6 +1,9 @@
 package pavlov24.deverb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -30,14 +33,38 @@ public class Verb {
     private String image;
 
     @ManyToMany(mappedBy = "verbs")
+    @ToString.Exclude
     protected Set<Category> categories = new HashSet<>();
 
     @OneToOne(mappedBy = "verb")
+    @ToString.Exclude
     protected Statistics statistics;
 
     private String children;
 
     @OneToMany(mappedBy = "verb")
+    @ToString.Exclude
     private Set<Example> examples;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "CLIENT_VERB",
+            inverseJoinColumns = @JoinColumn(name = "CLIENT_ID"),
+            joinColumns = @JoinColumn(name = "VERB_ID")
+    )
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    protected Set<Client> followers = new HashSet<>();
+
+    public void addFollower(Client client) {
+        this.getFollowers().add(client);
+        client.getVerbs().add(this);
+    }
+
+    public void removeFollower(Client client) {
+        this.getFollowers().remove(client);
+        client.getVerbs().remove(this);
+    }
 }

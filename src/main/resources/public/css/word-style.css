@@ -38,16 +38,24 @@
 }
 
 .hover-like svg:hover {
-    fill: green;
+    fill: #0dcaf0 !important;
 }
 .hover-like:hover {
-    border-color: green !important;
+    border-color: #0dcaf0 !important;
 }
 
 .liked {
-    border-color: red !important;
+    border-color: #198754 !important;
 }
 
 .liked svg {
-    fill: red !important;
+    fill: #198754 !important;
+}
+
+.not-liked {
+    border-color: #dc3545 !important;
+}
+
+.not-liked svg {
+    fill: #dc3545 !important;
 }

@@ -6,8 +6,12 @@ import org.springframework.data.repository.query.Param;
 import pavlov24.deverb.domain.Verb;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface VerbRepository extends CrudRepository<Verb, Long> {
+
+    @Query("select v from Verb v join fetch v.followers where v.id = :id")
+    Optional<Verb> findByIdJoinFollowers(@Param("id") Long id);
 
     Verb findByValue(String value);
 

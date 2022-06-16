@@ -9,5 +9,46 @@
 <div class="d-flex p-3 mx-auto flex-column" style="max-width:50vw;width:100%;height:8vh;">
     <div th:replace="~{header :: normal}"></div>
 </div>
+<div class="container" style="max-width:50vw;width:100%;">
+    <table class="table table-bordered table-info text-center align-middle">
+        <thead>
+        <tr class="d-flex">
+            <th class="col-4" scope="col">Глагол</th>
+            <th class="col-4" scope="col">Перевод</th>
+            <th class="col-2" scope="col">Перейти</th>
+            <th class="col-2" scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="d-flex" th:each="verb : ${client.verbs}">
+            <td class="col-4" th:text="${verb.value}"> </td>
+            <td class="col-4" th:text="${verb.translate}">Otto</td>
+            <td class="col-2"><a class="btn btn-warning" th:href="@{'/word/' + ${verb.value}}">Перейти</a></td>
+            <td class="col-2 verb-row" th:id="${verb.id}"><button class="btn btn-danger">Удалить</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+   let rows = document.getElementsByClassName('verb-row');
+   for (let i = 0; i < rows.length; i++) {
+       let row = rows[i];
+       row.addEventListener('click', event => {
+            let id = event.target.parentElement.id;
+            fetch('/bookmark/remove/'+id, {
+                headers: {
+                    [[${_csrf.parameterName}]]: '[[${_csrf.token}]]'
+                }
+            }).then(result => {
+                if (result.ok)
+                result.text().then( text=> {
+                    if (text != -1) {
+                        row.parentElement.remove();
+                    }
+                })
+            }).catch(error => {console.log(error);})
+       })
+   }
+</script>
 </body>
 </html>

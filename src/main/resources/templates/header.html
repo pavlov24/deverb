@@ -14,7 +14,9 @@
         </nav>
         <nav class="nav nav-masthead justify-content-center float-md-end" sec:authorize="isAuthenticated()">
             <a class="nav-link" href="/client">Мои закладки</a>
-            <a class="nav-link" href="/logout">Выйти</a>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-primary me-2">Выйти</button>
+            </form>
         </nav>
     </div>
 </header>

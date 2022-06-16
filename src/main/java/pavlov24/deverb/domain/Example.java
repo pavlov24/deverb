@@ -23,7 +23,7 @@ public class Example {
     private String germany;
     private String russian;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     protected Verb verb;
 }

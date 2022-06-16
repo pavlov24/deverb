@@ -19,7 +19,7 @@ public class DeverbApplication {
 
 		ConfigurableApplicationContext context = SpringApplication.run(DeverbApplication.class, args);
 
-		VerbRepository repository = context.getBean(VerbRepository.class);
+		//VerbRepository repository = context.getBean(VerbRepository.class);
 		/*CategoryRepository catrepo = context.getBean(CategoryRepository.class);
 		/*List<Verb> verbs = List.of(
 				new Verb(0L, "machen", false, VerbType.SCHWACH, "gemacht", "machte", "делать", "machen.jpg"),
